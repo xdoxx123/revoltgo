@@ -294,7 +294,7 @@ func (c *HTTPClient) prepareJSONBody(body any) (io.Reader, string, error) {
 	if err != nil {
 		return nil, "", fmt.Errorf("json.Marshal: %w", err)
 	}
-	println(string(data))
+
 	return bytes.NewReader(data), "application/json", nil
 }
 
@@ -454,6 +454,11 @@ type ServerMemberEditParams struct {
 	Roles    []string  `msg:"roles" json:"roles,omitempty"`
 	Timeout  time.Time `msg:"timeout" json:"timeout,omitempty"`
 	Remove   []string  `msg:"remove" json:"remove,omitempty"`
+}
+
+type ServerMemberBanParams struct {
+	Reason                 *string `json:"reason"`
+	Delete_message_seconds *int64  `json:"delete_message_seconds"`
 }
 
 type MessageEditParams struct {

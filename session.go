@@ -864,16 +864,8 @@ func (s *Session) ServerMemberUnban(sID, mID string) (err error) {
 	return
 }
 
-func (s *Session) ServerMemberBan(sID, mID string) (err error) {
+func (s *Session) ServerMemberBan(sID, mID string, data ServerMemberBanParams) (err error) {
 	endpoint := EndpointServerBan(sID, mID)
-
-	data := struct {
-		Reason                 *string `json:"reason"`
-		Delete_message_seconds *string `json:"delete_message_seconds"`
-	}{
-		Reason:                 nil,
-		Delete_message_seconds: nil,
-	}
 
 	err = s.HTTP.Request(http.MethodPut, endpoint, data, nil)
 	return
