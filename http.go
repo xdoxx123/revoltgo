@@ -294,7 +294,7 @@ func (c *HTTPClient) prepareJSONBody(body any) (io.Reader, string, error) {
 	if err != nil {
 		return nil, "", fmt.Errorf("json.Marshal: %w", err)
 	}
-
+	println(string(data))
 	return bytes.NewReader(data), "application/json", nil
 }
 
